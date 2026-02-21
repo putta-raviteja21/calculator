@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Calculator</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff0000, #ffcc00);
+            font-family: 'Comic Sans MS', cursive;
+        }
+
+        .calculator {
+            position: relative;
+            background: #111;
+            padding: 25px;
+            border-radius: 25px;
+            width: 400px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+        }
+
+        /* Mickey ears */
+        .ear-left, .ear-right {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: black;
+            border-radius: 50%;
+            top: -60px;
+            z-index: -1;
+        }
+
+        .ear-left { left: -40px; }
+        .ear-right { right: -40px; }
+
+        .display {
+            width: 100%;
+            height: 60px;
+            background: #000;
+            color: #ffcc00;
+            font-size: 24px;
+            text-align: right;
+            padding: 10px;
+            border-radius: 12px;
+            border: none;
+            margin-bottom: 15px;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+        }
+
+        button {
+            height: 50px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-weight: bold;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        .number {
+            background: #ffcc00;
+            color: black;
+        }
+
+        .operator {
+            background: #ff0000;
+            color: white;
+        }
+
+        .scientific {
+            background: #333;
+            color: #ffcc00;
+        }
+
+        .equal {
+            background: #00c853;
+            color: white;
+            grid-column: span 2;
+        }
+
+        .clear {
+            background: #d50000;
+            color: white;
+        }
+
+        h2 {
+            text-align: center;
+            color: #ffcc00;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator">
+    <div class="ear-left"></div>
+    <div class="ear-right"></div>
+
+    <h2>  Calculator</h2>
+
+    <input type="text" id="display" class="display" disabled>
+
+    <div class="buttons">
+        <button class="scientific" onclick="append('Math.sin(')">sin</button>
+        <button class="scientific" onclick="append('Math.cos(')">cos</button>
+        <button class="scientific" onclick="append('Math.tan(')">tan</button>
+        <button class="scientific" onclick="append('Math.log10(')">log</button>
+        <button class="scientific" onclick="append('Math.sqrt(')">√</button>
+
+        <button class="number" onclick="append('7')">7</button>
+        <button class="number" onclick="append('8')">8</button>
+        <button class="number" onclick="append('9')">9</button>
+        <button class="operator" onclick="append('/')">÷</button>
+        <button class="clear" onclick="clearDisplay()">C</button>
+
+        <button class="number" onclick="append('4')">4</button>
+        <button class="number" onclick="append('5')">5</button>
+        <button class="number" onclick="append('6')">6</button>
+        <button class="operator" onclick="append('*')">×</button>
+        <button class="operator" onclick="append('-')">−</button>
+
+        <button class="number" onclick="append('1')">1</button>
+        <button class="number" onclick="append('2')">2</button>
+        <button class="number" onclick="append('3')">3</button>
+        <button class="operator" onclick="append('+')">+</button>
+        <button class="equal" onclick="calculate()">=</button>
+
+        <button class="number" onclick="append('0')">0</button>
+        <button class="number" onclick="append('.')">.</button>
+        <button class="scientific" onclick="append('Math.PI')">π</button>
+        <button class="scientific" onclick="append('(')">(</button>
+        <button class="scientific" onclick="append(')')">)</button>
+    </div>
+</div>
+
+<script>
+    function append(value) {
+        document.getElementById("display").value += value;
+    }
+
+    function clearDisplay() {
+        document.getElementById("display").value = "";
+    }
+
+    function calculate() {
+        try {
+            document.getElementById("display").value =
+                eval(document.getElementById("display").value);
+        } catch {
+            alert("Invalid Expression 🐭");
+        }
+    }
+</script>
+
+</body>
+</html>
