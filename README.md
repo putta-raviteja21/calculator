@@ -1,0 +1,4 @@
+Tejas Calculator is a stylish scientific calculator built using HTML, CSS, and JavaScript. 
+It supports basic arithmetic operations and scientific functions like sin, cos, tan, log, square root, and more.
+
+This project features a modern floating UI design with animated background text.
